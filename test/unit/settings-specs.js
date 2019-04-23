@@ -283,6 +283,24 @@ describe('settings', function () {
     });
   });
 
+  describe.skip('setSafariLiteSettings', function () {
+    let sim;
+    before(function () {
+      sim = new SimulatorXcode6();
+      sinon.stub(settings, 'readSettings').returns({vruno: 'rules'});
+      sinon.stub(settings, 'plistPaths').returns(['path/to/com.apple.mobilesafari']);
+      sinon.stub(settings, 'update');
+    });
+
+    afterEach(function () {
+      sinon.restore();
+    });
+
+    it('should update safari setting with lite values', async function () {
+      await sim.setSafariLiteSettings();
+    });
+  });
+
   describe('setReduceMotion', function () {
     let sim;
     before(function () {
